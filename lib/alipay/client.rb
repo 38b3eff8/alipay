@@ -126,7 +126,12 @@ module Alipay
     def execute(params)
       params = prepare_params(params)
       puts params
-      Net::HTTP.post_form(URI(@url), params).body
+      uri = URI(@url)
+      uri.query = URI.encode_www_form(params)
+
+      Net::HTTP.get_response(uri).body
+      
+      # Net::HTTP.post_form(URI(@url), params).body
     end
 
     # Generate sign for params.
