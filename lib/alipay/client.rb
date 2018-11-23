@@ -125,7 +125,7 @@ module Alipay
     #   # => '{ "alipay_data_dataservice_bill_downloadurl_query_response":{...'
     def execute(params)
       params = prepare_params(params)
-
+      puts params
       Net::HTTP.post_form(URI(@url), params).body
     end
 
